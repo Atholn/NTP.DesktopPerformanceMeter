@@ -116,7 +116,6 @@ final _scrollCntroller = ScrollController();
     _stopWatchTimer.dispose();
     super.dispose();
     
-    _stopWatchTimer.onExecute.add(StopWatchExecute.start);
     _scrollCntroller;
     
   }

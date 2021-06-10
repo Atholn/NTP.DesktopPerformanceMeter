@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/test/reader.dart';
 import 'package:flutter_application_1/widgets/list_log2.dart';
 import 'package:flutter_application_1/widgets/main_window.dart';
 
@@ -54,14 +55,7 @@ class MyApp extends StatelessWidget {
 
 /// This is the stateful widget that the main application instantiates.
 class MyStatefulWidget extends StatefulWidget {
-
-
-
-
   const MyStatefulWidget({Key key}) : super(key: key);
-
-
-
 
   @override
   State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
@@ -74,9 +68,8 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static  List<Widget> _widgetOptions = <Widget>[
     MainProgram(),
-    ListScreen(
-    ),
-    
+    ListScreen(),
+    Reader(),
   ];
 
   void _onItemTapped(int index) {
@@ -102,6 +95,11 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'List Logs',
+
+          ),
+           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'List Logs',
 
