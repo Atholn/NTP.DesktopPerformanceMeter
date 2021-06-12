@@ -1,1 +1,1 @@
-export 'reader.dart';
+export 'powershell.dart';

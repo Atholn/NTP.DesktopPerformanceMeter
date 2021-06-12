@@ -84,7 +84,7 @@ class _TypeScanState extends State<TypeScan> {
           dropdownValue = newValue;
         });
       },
-      items: <String>[ 'GPU', 'CPU', 'VRAM', 'RAM']
+      items: <String>[ 'GPU', 'CPUUUUU', 'VRAM', 'RAM']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,

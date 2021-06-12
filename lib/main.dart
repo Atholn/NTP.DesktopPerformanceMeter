@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/test/reader.dart';
+import 'package:flutter_application_1/test/powershell.dart';
 import 'package:flutter_application_1/widgets/list_log2.dart';
 import 'package:flutter_application_1/widgets/main_window.dart';
 
@@ -69,7 +69,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static  List<Widget> _widgetOptions = <Widget>[
     MainProgram(),
     ListScreen(),
-    Reader(),
+    Powershell(),
   ];
 
   void _onItemTapped(int index) {
@@ -99,7 +99,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
             label: 'List Logs',
 
           ),
-           BottomNavigationBarItem(
+        BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'List Logs',
 
