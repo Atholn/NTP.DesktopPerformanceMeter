@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/widgets/powershell_connection.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 class MainProgram  extends StatelessWidget {
   const MainProgram ({Key key}) : super(key: key);
@@ -24,8 +25,6 @@ class MainProgram  extends StatelessWidget {
     );
   }
 }
-
-
 
 
 class MyStatelessWidget extends StatelessWidget {
@@ -84,7 +83,7 @@ class _TypeScanState extends State<TypeScan> {
           dropdownValue = newValue;
         });
       },
-      items: <String>[ 'GPU', 'CPUUUUU', 'VRAM', 'RAM']
+      items: <String>[ 'GPU', 'CPU', 'VRAM', 'RAM']
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
@@ -108,8 +107,8 @@ class _ScanPanelState extends State<ScanPanel> {
 final StopWatchTimer _stopWatchTimer = StopWatchTimer();
 final _isHours = true;
 final _scrollCntroller = ScrollController();
-    
 
+String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
 
 @override
   void dispose() {
@@ -134,6 +133,8 @@ final _scrollCntroller = ScrollController();
           },
         ),
         Text(dropdownValue),
+        
+
         StreamBuilder<int>(
           stream: _stopWatchTimer.rawTime,
           //initialData: _stopWatchTimer.rawTime,
@@ -143,10 +144,23 @@ final _scrollCntroller = ScrollController();
             return Text(displayTime);
         }),
         CustomButton(
+          color: Colors.black,
+          
+          label: 'GPU REFRESH',
+          onPress: (){
+            setState(() {
+              powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
+         });
+           
+           
+          },
+        ),
+        CustomButton(
           color: Colors.green,
           label: 'Start',
           onPress: (){
             _stopWatchTimer.onExecute.add(StopWatchExecute.start);
+            
           },
         ),
         CustomButton(
@@ -208,7 +222,8 @@ final _scrollCntroller = ScrollController();
                 itemCount: value.length,);
             },
           ),
-        )
+        ),
+        Text(powershellScriptGPU),
       ],
     ),);
   }
@@ -236,3 +251,4 @@ class CustomButton extends StatelessWidget {
 
 
 }
+

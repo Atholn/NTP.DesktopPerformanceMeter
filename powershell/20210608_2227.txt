@@ -1,1 +1,0 @@
-Process dwm GPU Process Memory 0 MB\nProcess dwm GPU Engine Usage 0%Total GPU Engine Usage: 0.1%Total GPU Process Memory Local Usage: 780.66 MB

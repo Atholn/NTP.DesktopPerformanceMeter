@@ -31,6 +31,8 @@ class Log2 {
 
 class Powershell extends StatelessWidget {
  String powershellScript = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\Sum.ps1', ['1', '2']);
+ String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
+
   List<Log2> ListLogs = [
     Log2(title: "Log1", description: "GPU Proccess", id: "1" ),
     Log2(title: "Log2", description: "GPU Proccess", id: "2" )
@@ -43,9 +45,9 @@ class Powershell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('logs'),
+        
       ),
-      body: Center(child: Text(powershellScript)),
+      body: Center(child: Text(powershellScriptGPU),),
     
       
     );
@@ -69,6 +71,7 @@ class DetailScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Text(todo.description +'/' + todo.id),
+        
       ),
     );
   }
