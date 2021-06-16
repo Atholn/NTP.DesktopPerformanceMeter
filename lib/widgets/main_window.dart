@@ -1,9 +1,14 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/powershell_connection.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 class MainProgram  extends StatelessWidget {
+
   const MainProgram ({Key key}) : super(key: key);
+
+
 
   @override
   Widget build (BuildContext context){
@@ -26,11 +31,23 @@ class MainProgram  extends StatelessWidget {
   }
 }
 
+int i = 0;
+String XD='h1';
+void startXD ()async {
+
+     const oneSec = const Duration(seconds:5);
+     new Timer.periodic(oneSec, (Timer t) =>  {print( i.toString()), i++, XD = i.toString()});
+
+}
+
+
+
 
 class MyStatelessWidget extends StatelessWidget {
   const MyStatelessWidget({Key key}) : super(key: key);
 
   @override
+  
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -65,7 +82,8 @@ String dropdownValue = 'GPU';
 
 class _TypeScanState extends State<TypeScan> {
 
-
+// const oneSec = const Duration(seconds:5);
+//      new Timer.periodic(oneSec, (Timer t) =>  {print( i.toString()), i++, XD = i.toString()});
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
@@ -108,7 +126,10 @@ final StopWatchTimer _stopWatchTimer = StopWatchTimer();
 final _isHours = true;
 final _scrollCntroller = ScrollController();
 
-String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
+//String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
+
+
+      
 
 @override
   void dispose() {
@@ -116,8 +137,12 @@ String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_appli
     super.dispose();
     
     _scrollCntroller;
+
+     
     
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -148,9 +173,16 @@ String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_appli
           
           label: 'GPU REFRESH',
           onPress: (){
-            setState(() {
-              powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
-         });
+        
+        
+         setState(() {
+  
+          });
+           // Timer.periodic();
+        //    setState(() {
+        //       powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
+        //  }
+       //  );
            
            
           },
@@ -223,7 +255,8 @@ String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_appli
             },
           ),
         ),
-        Text(powershellScriptGPU),
+        //Text(powershellScriptGPU),
+        Text(XD),
       ],
     ),);
   }

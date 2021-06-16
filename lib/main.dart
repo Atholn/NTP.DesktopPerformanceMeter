@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/test/powershell.dart';
+import 'package:flutter_application_1/test/home.dart';
+import 'package:flutter_application_1/test/test.dart';
 import 'package:flutter_application_1/widgets/list_log2.dart';
 import 'package:flutter_application_1/widgets/main_window.dart';
 
@@ -69,7 +70,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static  List<Widget> _widgetOptions = <Widget>[
     MainProgram(),
     ListScreen(),
-    Powershell(),
+    MainPageeee(),
   ];
 
   void _onItemTapped(int index) {
@@ -95,12 +96,13 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+             icon: Icon(Icons.list),
+            
             label: 'List Logs',
 
           ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+           icon: Icon(Icons.add_to_home_screen),
             label: 'List Logs',
 
           ),
