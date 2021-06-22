@@ -9,9 +9,6 @@ class Log2 {
   Log2({@required this.title, @required this.description, @required this.id});
 }
 
-
-
-
 class ListScreen extends StatelessWidget {
 
   List<Log2> ListLogs = [

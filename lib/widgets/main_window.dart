@@ -1,8 +1,7 @@
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/widgets/powershell_connection.dart';
+import 'package:flutter_application_1/widgets/scannner.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 class MainProgram  extends StatelessWidget {
 
@@ -23,8 +22,7 @@ class MainProgram  extends StatelessWidget {
                   //   onTap: () {},
                   // ),
                   MyStatelessWidget(),
-                  TypeScan(),
-                 
+                  TypeScan(),              
                 ],
         ))
     );
@@ -44,23 +42,23 @@ void startXD ()async {
 
 
 class MyStatelessWidget extends StatelessWidget {
-  const MyStatelessWidget({Key key}) : super(key: key);
+   MyStatelessWidget({Key key}) : super(key: key);
 
   @override
   
   @override
   Widget build(BuildContext context) {
-    return Material(
-      
-      child: Center(
-        
-        child: Ink(
-            
+    return Material(     
+      child: Center(      
+        child: Ink(          
             child: IconButton(
-            icon: const Icon(Icons.addchart),
-            
+            icon: const Icon(Icons.addchart),          
             color: Colors.black,
-            onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context)=>ScanPanel() ));},
+            onPressed: () {
+
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Scanner(check1: dropdownValue) ),);}
+
+            
 
           ),
         ),
@@ -69,21 +67,23 @@ class MyStatelessWidget extends StatelessWidget {
   }
 }
 
-
+String dropdownValue = 'CPU';
 ///------------------------------------
 class TypeScan extends StatefulWidget {
-  const TypeScan({Key key}) : super(key: key);
+  
+
+  TypeScan({Key key}) : super(key: key);
 
   @override
   State<TypeScan> createState() => _TypeScanState();
 }
 
-String dropdownValue = 'GPU';
+
 
 class _TypeScanState extends State<TypeScan> {
 
 // const oneSec = const Duration(seconds:5);
-//      new Timer.periodic(oneSec, (Timer t) =>  {print( i.toString()), i++, XD = i.toString()});
+// new Timer.periodic(oneSec, (Timer t) =>  {print( i.toString()), i++, XD = i.toString()});
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
@@ -101,7 +101,7 @@ class _TypeScanState extends State<TypeScan> {
           dropdownValue = newValue;
         });
       },
-      items: <String>[ 'GPU', 'CPU', 'VRAM', 'RAM']
+      items: <String>[  'CPU',  'RAM'] //'VRAM','GPU',
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
@@ -114,7 +114,13 @@ class _TypeScanState extends State<TypeScan> {
 
 //----
 class ScanPanel extends StatefulWidget {
-  const ScanPanel({Key key}) : super(key: key);
+   final String check;
+   ScanPanel({Key key, String this.check}) : super(key: key);
+
+
+
+
+
 
   @override
   State<ScanPanel> createState() => _ScanPanelState();
@@ -125,19 +131,13 @@ class _ScanPanelState extends State<ScanPanel> {
 final StopWatchTimer _stopWatchTimer = StopWatchTimer();
 final _isHours = true;
 final _scrollCntroller = ScrollController();
-
-//String powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
-
-
-      
-
+    
 @override
   void dispose() {
     _stopWatchTimer.dispose();
     super.dispose();
     
     _scrollCntroller;
-
      
     
   }
@@ -177,14 +177,7 @@ final _scrollCntroller = ScrollController();
         
          setState(() {
   
-          });
-           // Timer.periodic();
-        //    setState(() {
-        //       powershellScriptGPU = runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\gpu.ps1', ['1', '2']);
-        //  }
-       //  );
-           
-           
+          });        
           },
         ),
         CustomButton(

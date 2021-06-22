@@ -1,8 +1,8 @@
 import 'dart:io';
 
-String runPowerShellScript(String scriptPath, List<String> argumentsToScript) {
+String runPowerShellScript(String scriptPath) {
   return Process.runSync(
-          'Powershell.exe', ['-File', scriptPath, ...argumentsToScript]).stdout
+          'Powershell.exe', ['-File', scriptPath,]).stdout
       as String;
 }
 

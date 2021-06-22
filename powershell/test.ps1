@@ -33,3 +33,7 @@ $GpuMemTotal = (((Get-Counter "\GPU Process Memory(*)\Local Usage").CounterSampl
     Write-Output "Total GPU Engine Usage: $([math]::Round($GpuUseTotal,2))%"
 
         Get-Counter -Counter  "\Procesor(*)\Czas procesora (%)" -Continuous
+
+         Get-Counter -Counter  "\Procesor(_Total)\Czas procesora (%)"-SampleInterval 1 -MaxSamples 1
+
+         //Get-Counter -Counter  "\Procesor(_Total)\Czas procesora (%)"    | Select-Object -ExpandProperty countersamples  | Select-Object -Property instancename, cookedvalue | -Continuous

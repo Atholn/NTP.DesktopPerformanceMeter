@@ -1,0 +1,1 @@
+﻿ Get-Content C:\flutter\proj\flutter_application_1\logs\dd.txt
