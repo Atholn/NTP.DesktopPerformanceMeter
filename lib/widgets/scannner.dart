@@ -80,8 +80,6 @@ Future<String> _read(String filename) async {
   READ () {
   setState((){
     ii = int.parse(runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\read.ps1'));
-    logs.add(powerShellReturnValue);
-    //actualTime= _timer.toString();
   });
   }
   CPU () {

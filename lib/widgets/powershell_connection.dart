@@ -6,3 +6,9 @@ String runPowerShellScript(String scriptPath) {
       as String;
 }
 
+
+String runPowerShellScript2(String scriptPath, List<String> argumentsToScript) {
+  return Process.runSync(
+          'Powershell.exe', ['-File', scriptPath, ...argumentsToScript]).stdout
+      as String;
+}

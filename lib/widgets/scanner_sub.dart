@@ -65,12 +65,12 @@ Future<String> getFilePath() async {
                iii = ii.toString();
                   var file = File('logs/$iii.txt');
                   var sink = file.openWrite();
-                  sink.write(logs);
+                  sink.write(  logs);
                   sink.close();
 
                   var file2 = File('logs/dd.txt');
                   var sink2 = file2.openWrite();
-                  sink2.write(ii+1);
+                  sink2.write( ii+1);
 
                   // Close the IOSink to free system resources.
                   sink2.close();
