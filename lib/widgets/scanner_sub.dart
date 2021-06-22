@@ -1,15 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+
 String iii = "";
 class ScannerSub extends StatelessWidget {
   // Declare a field that holds the Todo.
   final List<String> logs;
   final int ii;
+  final String type;
+  final int length;
   // In the constructor, require a Todo.
-  ScannerSub({Key key, List<String> this.logs, int this.ii}) : super(key: key);
+  ScannerSub({Key key, List<String> this.logs, int this.ii, String this.type, int this.length}) : super(key: key);
 
 //  Future<void> _loadData() async {
 //     i= await rootBundle.loadString('logs/dd.txt').toString();
@@ -66,17 +67,28 @@ Future<String> getFilePath() async {
                   var file = File('logs/$iii.txt');
                   var sink = file.openWrite();
                   sink.write(  logs);
-                  sink.close();
+                  sink.close();  
 
                   var file2 = File('logs/dd.txt');
                   var sink2 = file2.openWrite();
                   sink2.write( ii+1);
-
-                  // Close the IOSink to free system resources.
                   sink2.close();
 
+                  var file3 = File('logs/${iii}i.txt');
+                  var sink3 = file3.openWrite();
+                  List<String> info =[];
+                  info.add("\"Log " + (ii).toString()+"\"");
+                  info.add("\""+DateTime.now().toString()+"\"");
+                  info.add("\""+type+"\"");
+                  info.add("\""+length.toString()+"\"");
+
+
+                  
+                  sink3.write(info);
+                  sink3.close();
+
               Navigator.pop(context);
-               Navigator.pop(context);}      
+              Navigator.pop(context);}      
           ),
        
       Text(ii.toString()),
@@ -85,14 +97,3 @@ Future<String> getFilePath() async {
     ),);
 }}
 String i;
-
-
-
-void maine()  {
-  
-
-
-  //final filename = '$iii.txt';
-  //var file = await File(filename).writeAsString('some content');
-  // Do something with the file.
-}

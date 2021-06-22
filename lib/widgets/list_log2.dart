@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/widgets/powershell_connection.dart';
@@ -6,6 +8,7 @@ class Log2 {
 
    String title;
    String description;
+
    String id;
   Log2({@required this.title, @required this.description, @required this.id});
 }
@@ -14,7 +17,12 @@ class Log{
   String l;
   String title;
   String id;
-  Log({@required this.l, @required this.title, @required this.id});
+  
+  String type;
+  String date;
+  int length;
+  double averange;
+  Log({@required this.l, @required this.title, @required this.id, @required this.type,  @required this.date ,  @required this.length ,  @required this.averange});
 }
 
 class ListScreen extends StatelessWidget {
@@ -43,7 +51,7 @@ class ListScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen2(todo: Logs[index]),
+                  builder: (context) => DetailScreen(todo: Logs[index]),
                 ),
               );
             },
@@ -55,35 +63,13 @@ class ListScreen extends StatelessWidget {
   }
 }
 
+
 class DetailScreen extends StatelessWidget {
-  // Declare a field that holds the Todo.
-  final Log2 todo;
-
-  // In the constructor, require a Todo.
-  DetailScreen({Key key, Log2 this.todo}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // Use the Todo to create the UI.
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(todo.title),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text(todo.description +'/' + todo.id),
-      ),
-    );
-  }
-}
-
-
-class DetailScreen2 extends StatelessWidget {
   // Declare a field that holds the Todo.
   final Log todo;
 
   // In the constructor, require a Todo.
-  DetailScreen2({Key key, Log this.todo}) : super(key: key);
+  DetailScreen({Key key, Log this.todo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -94,13 +80,20 @@ class DetailScreen2 extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Text(todo.l +'/' + todo.id),
+        child: Text(todo.title + '\n' + todo.date + '\n' + todo.id + '\n' + todo.type + '\n' + todo.l + "\n" + todo.length.toString() + "\n" + todo.averange.toString())
       ),
     );
   }
 }
 
-
+// class Log{
+//   String l;
+//   String title;
+//   String id;
+  
+//   String type;
+//   String date;
+//   String length;
 
 
 int ii;
@@ -111,8 +104,30 @@ List<Log> Logs = [];
    Logs = [];
     for(int i = 0; i<ii;i++)
     {
-      List<String> list = [];
-      list.add(i.toString());
-      Logs.add(Log(title: "Log$i", l: runPowerShellScript2(r'C:\flutter\proj\flutter_application_1\powershell\read2.ps1', list), id: "$i" ));
+      List<String> list1 = [];
+      list1.add(i.toString());
+      List<String> list2 = [];
+      list2.add(i.toString()+'i');
+      String ListInfo = runPowerShellScript2(r'C:\flutter\proj\flutter_application_1\powershell\read2.ps1', list2);
+      var ListInfoDecode = json.decode(ListInfo);
+    // info.add('Log ' + (ii).toString());
+    //               info.add(DateTime.now().toString());
+    //               info.add(type);
+    //               info.add(length.toString());
+      double sum=1;
+      String l = runPowerShellScript2(r'C:\flutter\proj\flutter_application_1\powershell\read2.ps1', list1);
+       var lDecode = json.decode(l);
+      for(int j=0; j< int.parse( ListInfoDecode[3]); j++)
+      {
+          sum += lDecode[j];
+      }
+      double av =  0;
+      av=sum/double.parse(ListInfoDecode[3]);
+
+      Logs.add(Log( l: l, id: "$i", title:  ListInfoDecode[0], type: ListInfoDecode[2], date: ListInfoDecode[1], length:int.parse( ListInfoDecode[3]) , averange: av));
+
     }
+
+
+
   }

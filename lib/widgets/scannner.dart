@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 
 class Scanner extends StatefulWidget{
+
 final String check1;
   Scanner({Key key, String this.check1}) : super(key: key);
 
@@ -20,10 +21,7 @@ class _Scanner extends State<Scanner> {
 
   final String check;
   _Scanner({ String this.check}) ;
-
   List<String> logs = [];
-
-
 
 String powerShellReturnValue = "";
 String actualTime='';
@@ -118,8 +116,8 @@ Future<String> _read(String filename) async {
             onPressed: () {
 
                   READ ();
-             // _timer.cancel();
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>ScannerSub(logs: logs,  ii : ii) ),);}
+              //_timer.cancel();
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ScannerSub(logs: logs,  ii : ii, type: check , length : logs.length ) ),);}
 
             
 
