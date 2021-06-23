@@ -31,6 +31,7 @@ dependencies:
   stop_watch_timer: ^1.1.0+1
   cpu_reader: ^2.0.0
   path_provider: ^1.6.14
+  syncfusion_flutter_charts: ^18.4.49
   
 dev_dependencies:
   flutter_test:

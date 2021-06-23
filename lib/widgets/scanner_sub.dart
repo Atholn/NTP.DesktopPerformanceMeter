@@ -45,9 +45,9 @@ Future<String> getFilePath() async {
   }
 
   void saveFile() async {
-     String s = "C:/flutter/proj/flutter_application_1/logs/$ii.txt";
-      File file = File(s); // 1
-     file.writeAsString(logs.toString()); // 2
+    String s = "C:/flutter/proj/flutter_application_1/logs/$ii.txt";
+    File file = File(s); // 1
+    file.writeAsString(logs.toString()); // 2
   }
 
 
@@ -60,7 +60,7 @@ Future<String> getFilePath() async {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         IconButton(
-            icon: const Icon(Icons.addchart),          
+            icon: const Icon(Icons.save),          
             color: Colors.black,
             onPressed: () {  
                iii = ii.toString();
@@ -81,9 +81,6 @@ Future<String> getFilePath() async {
                   info.add("\""+DateTime.now().toString()+"\"");
                   info.add("\""+type+"\"");
                   info.add("\""+length.toString()+"\"");
-
-
-                  
                   sink3.write(info);
                   sink3.close();
 
@@ -93,6 +90,14 @@ Future<String> getFilePath() async {
        
       Text(ii.toString()),
       Text(logs.toString()),
+      IconButton(
+            icon: const Icon(Icons.cancel ),          
+            color: Colors.black,
+            onPressed: () { 
+
+              Navigator.pop(context);
+              Navigator.pop(context);}      
+          ),
       ],
     ),);
 }}

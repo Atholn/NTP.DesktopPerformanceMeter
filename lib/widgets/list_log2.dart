@@ -2,7 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/test/chart.dart';
 import 'package:flutter_application_1/widgets/powershell_connection.dart';
+
+
 
 class Log2 {
 
@@ -27,12 +30,11 @@ class Log{
 
 class ListScreen extends StatelessWidget {
 
-  List<Log2> ListLogs = [
-    Log2(title: "Log1", description: "GPU Proccess", id: "1" ),
-    Log2(title: "Log2", description: "GPU Proccess", id: "2" )
-  ];
+  // List<Log2> ListLogs = [
+  //   Log2(title: "Log1", description: "GPU Proccess", id: "1" ),
+  //   Log2(title: "Log2", description: "GPU Proccess", id: "2" )
+  // ];
   
-
   ListScreen({Key key}) : super(key: key);
 
   @override
@@ -78,29 +80,40 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(todo.title),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text(todo.title + '\n' + todo.date + '\n' + todo.id + '\n' + todo.type + '\n' + todo.l + "\n" + todo.length.toString() + "\n" + todo.averange.toString())
+      
+        
+  body: new Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(todo.title + '\n' + todo.date + '\n' + todo.id + '\n' + todo.type + '\n' + todo.l + "\n" + todo.length.toString() + "\n" + todo.averange.toString()),
+        
+         IconButton(
+          icon: const Icon(Icons.bar_chart ),
+          tooltip: 'Chart',
+          onPressed: () {
+             Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Chart(Log: int.parse(todo.id)),
+                ),
+              );
+          },
+        ),
+       //Chart(Log: int.parse(todo.id)),
+       ]
+     
       ),
     );
   }
+
 }
-
-// class Log{
-//   String l;
-//   String title;
-//   String id;
-  
-//   String type;
-//   String date;
-//   String length;
-
 
 int ii;
 List<Log> Logs = [];
 
-  READ () {    
-    ii = int.parse(runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\read.ps1'));  
+
+void READ () {    
+  ii = int.parse(runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\read.ps1'));  
    Logs = [];
     for(int i = 0; i<ii;i++)
     {
@@ -125,9 +138,8 @@ List<Log> Logs = [];
       av=sum/double.parse(ListInfoDecode[3]);
 
       Logs.add(Log( l: l, id: "$i", title:  ListInfoDecode[0], type: ListInfoDecode[2], date: ListInfoDecode[1], length:int.parse( ListInfoDecode[3]) , averange: av));
-
-    }
-
-
-
   }
+}
+
+
+

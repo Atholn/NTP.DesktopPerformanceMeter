@@ -22,7 +22,8 @@ class MainProgram  extends StatelessWidget {
                   //   onTap: () {},
                   // ),
                   MyStatelessWidget(),
-                  TypeScan(),              
+                  TypeScan(),  
+                       
                 ],
         ))
     );
@@ -55,11 +56,7 @@ class MyStatelessWidget extends StatelessWidget {
             icon: const Icon(Icons.addchart),          
             color: Colors.black,
             onPressed: () {
-
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Scanner(check1: dropdownValue) ),);}
-
-            
-
           ),
         ),
       ),
@@ -173,8 +170,6 @@ final _scrollCntroller = ScrollController();
           
           label: 'GPU REFRESH',
           onPress: (){
-        
-        
          setState(() {
   
           });        
