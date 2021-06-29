@@ -39,20 +39,6 @@ Timer _timer;
     }
   }
 
-// Timer _timer;
-    
-//     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-//           setState(() {
-//             greeting = "After Some time ${DateTime.now().second}";
-//           });
-//         });
-    
-//     FlatButton(
-//     	onPressed: (){
-//            _timer.cancel();
-//       }, child: Text("Stop")
-//     )
-
 int ii;
 Future<String> get _localPath async {
   final directory = await getApplicationDocumentsDirectory();
@@ -66,7 +52,7 @@ Future<File> _localFile(String name) async {
 
 Future<String> _read(String filename) async {
   try {
-    final file = await _localFile('C:\flutter\proj\dd.txt');
+    final file = await _localFile('.\logs\numberOfLogs.txt');
 
     // Read the file.
     return await file.readAsString();
@@ -77,12 +63,12 @@ Future<String> _read(String filename) async {
 }
   READ () {
   setState((){
-    ii = int.parse(runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\read.ps1'));
+    ii = int.parse(runPowerShellScript(r'.\powershell\readNumberOfLogs.ps1'));
   });
   }
   CPU () {
   setState((){
-    powerShellReturnValue =  runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\CPU.ps1');
+    powerShellReturnValue =  runPowerShellScript(r'.\powershell\CPU.ps1');
     logs.add(powerShellReturnValue);
     //actualTime= _timer.toString();
   });
@@ -90,7 +76,7 @@ Future<String> _read(String filename) async {
 
   RAM () {
   setState((){
-    powerShellReturnValue =  runPowerShellScript(r'C:\flutter\proj\flutter_application_1\powershell\RAM.ps1');
+    powerShellReturnValue =  runPowerShellScript(r'.\powershell\RAM.ps1');
     logs.add(powerShellReturnValue);
   });
   }
